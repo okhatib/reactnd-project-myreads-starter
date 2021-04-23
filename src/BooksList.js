@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import BookShelf from './BookShelf'
 
 class BooksList extends Component {
+
+    static propTypes = {
+        onChangeShelf: PropTypes.func.isRequired,
+        books: PropTypes.array.isRequired
+    }
+
     render() {
 
-        const { books } = this.props;
+        const { books, onChangeShelf } = this.props;
 
         return (
             <div className="list-books">
@@ -17,14 +24,17 @@ class BooksList extends Component {
                 <BookShelf 
                   title="Currently Reading" 
                   books={books.filter(book => book.shelf === 'currentlyReading')} 
+                  onChangeShelf={onChangeShelf}
                 />
                 <BookShelf 
                   title="Want to Read" 
                   books={books.filter(book => book.shelf === 'wantToRead')} 
+                  onChangeShelf={onChangeShelf} 
                 />
                 <BookShelf 
                   title="Read" 
                   books={books.filter(book => book.shelf === 'read')} 
+                  onChangeShelf={onChangeShelf} 
                 />
               </div>
               <Link to="/search" className="open-search">Add a book</Link>

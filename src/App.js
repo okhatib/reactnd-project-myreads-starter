@@ -24,6 +24,19 @@ class BooksApp extends React.Component {
     })
   }
 
+  ChangeShelf = (bookId, newShelf) => {
+
+    BooksAPI
+      .update(bookId, newShelf)
+      .then(res => {
+        let books = [...this.state.books];
+        const bookIndx = books.findIndex(book => book.id === bookId);
+        books[bookIndx].shelf = newShelf;
+        
+        this.setState({ books });
+      })
+  }
+
   render() {
 
     const { books } = this.state;
@@ -34,7 +47,10 @@ class BooksApp extends React.Component {
           exact 
           path="/" 
           render={() => (
-            <BooksList books={books} />
+            <BooksList 
+              books={books} 
+              onChangeShelf={this.ChangeShelf}
+            />
           )} 
         />
         <Route 
