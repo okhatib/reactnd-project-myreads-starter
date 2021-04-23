@@ -5,8 +5,7 @@ class BookshelfChanger extends Component {
 
     static propTypes = {
         onChangeShelf: PropTypes.func.isRequired,
-        bookId: PropTypes.string.isRequired,
-        shelf: PropTypes.string
+        book: PropTypes.object.isRequired
     }
 
     state = {
@@ -14,14 +13,15 @@ class BookshelfChanger extends Component {
     }
 
     componentDidMount(){
-        this.setState({ value: this.props.shelf || 'none' })
+        this.setState({ value: this.props.book.shelf || 'none' })
     }
 
     handleChange = (e) => {
         e.preventDefault();
 
-        const { onChangeShelf, bookId } = this.props;
-        onChangeShelf(bookId, e.target.value)
+        const { onChangeShelf, book } = this.props;
+        onChangeShelf(book, e.target.value)
+        this.setState({value: e.target.value})
     }
 
     render() {

@@ -20,11 +20,7 @@ class BookshelfBooks extends Component {
                     books.map(book => (
                         <li key={book.id}>
                             <Book 
-                                title={book.title} 
-                                authors={book.authors} 
-                                thumbnail={book.imageLinks.thumbnail} 
-                                bookId={book.id}
-                                shelf={book.shelf}
+                                book={book}
                                 onChangeShelf={onChangeShelf}
                             />
                         </li>

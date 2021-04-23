@@ -8,6 +8,7 @@ class BooksList extends Component {
 
     static propTypes = {
         onChangeShelf: PropTypes.func.isRequired,
+        //onUpdateBooks: PropTypes.func.isRequired,
         books: PropTypes.array.isRequired
     }
 
