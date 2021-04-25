@@ -19,7 +19,14 @@ class BookSearch extends Component {
 
         this.setState({ query });
 
-        if(query !== '' && query.length > 2) {
+        if(!query) {
+            this.setState({
+                query: query,
+                books: [],
+                showError: false
+            });
+        }
+        else if(query.length > 2) {
             BooksAPI.search(query).then(resBooks => {
 
                 if(resBooks.error) {
